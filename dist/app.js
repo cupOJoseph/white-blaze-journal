@@ -140,8 +140,8 @@ function openPost(post, centerMap = false) {
   $('post-date').textContent = formatDate(post.date);
   const sequence = post.kind === 'trail' ? trail : prelude;
   $('post-index').textContent = post.kind === 'trail'
-    ? `NOTE ${String(sequence.indexOf(post) + 1).padStart(2, '0')} / ${sequence.length}`
-    : 'BEFORE THE TRAIL';
+    ? `${sequence.indexOf(post) + 1} of ${sequence.length}`
+    : 'Before the trail';
   $('post-title').textContent = post.title;
   $('post-body').textContent = post.post;
   const image = $('post-image');
@@ -229,7 +229,7 @@ function revealStep() {
   } else traveler.setLatLng([post.lat, post.lon]);
   $('progress-fill').style.width = `${((currentStep + 1) / trail.length) * 100}%`;
   $('player-status').textContent = `${String(currentStep + 1).padStart(2, '0')} / ${trail.length} · ${formatDate(post.date, true)}`;
-  $('chapter-date').textContent = formatDate(post.date).toUpperCase();
+  $('chapter-date').textContent = formatDate(post.date);
   $('chapter-title').textContent = post.title;
   $('chapter-card').hidden = false;
   $('chapter-card').onclick = () => openPost(post);
@@ -259,7 +259,6 @@ async function init() {
   trail = posts.filter((post) => post.kind === 'trail').sort((a, b) => a.lat - b.lat || a.lon - b.lon);
   prelude = posts.filter((post) => post.kind === 'prelude').sort((a, b) => a.date.localeCompare(b.date));
   allOrdered = [...prelude, ...trail];
-  $('note-count').textContent = `${posts.length} ENTRIES`;
 
   map = L.map('map', { zoomControl: false, scrollWheelZoom: false, preferCanvas: true, minZoom: 4, maxZoom: 13 });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

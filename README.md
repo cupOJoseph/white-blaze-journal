@@ -1,6 +1,6 @@
 # White Blaze Journal
 
-An interactive map of 53 posts from a 2019 Appalachian Trail journal. The 49 trail notes appear in mapped south-to-north order; four pre-hike notes remain available in the journal, including the Colorado post outside the default East Coast view.
+An interactive map of 53 posts from a 2019 Georgia-to-Maine Appalachian Trail hike. The entries stop in Vermont. The 49 trail notes appear in mapped south-to-north order; four pre-hike notes remain available in the journal, including the Colorado post outside the default East Coast view.
 
 Open `dist/index.html` in a browser, or serve `dist/` with any static HTTP server. An internet connection is needed for the map library, OpenStreetMap tiles, and the detailed A.T. route.
 
