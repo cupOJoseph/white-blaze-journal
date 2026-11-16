@@ -9,9 +9,10 @@ import json
 from pathlib import Path
 import re
 
+ROOT = Path(__file__).resolve().parents[1]
 SOURCE = Path('/Users/cupo/Downloads/trail posts.md')
-DEST = Path(__file__).resolve().parents[1] / 'dist' / 'posts.json'
-DEST_JS = DEST.with_suffix('.js')
+DEST = ROOT / 'jsons' / 'posts.json'
+DEST_JS = ROOT / 'dist' / 'posts.js'
 
 
 class PostText(HTMLParser):
@@ -119,6 +120,7 @@ for post in posts:
 assert len(posts) == 53, len(posts)
 assert sum(p['kind'] == 'trail' for p in posts) == 49
 assert all(p['post'] and p['title'] for p in posts)
+DEST.parent.mkdir(parents=True, exist_ok=True)
 DEST.write_text(json.dumps(posts, ensure_ascii=False, indent=2) + '\n')
 DEST_JS.write_text('window.TRAIL_POSTS = ' + json.dumps(posts, ensure_ascii=False) + ';\n')
 print(f'Wrote {len(posts)} posts ({sum(p["kind"] == "trail" for p in posts)} trail) to {DEST}')
