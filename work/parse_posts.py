@@ -15,7 +15,7 @@ if len(sys.argv) != 2:
     raise SystemExit('Usage: python3 work/parse_posts.py "/path/to/trail posts.md"')
 SOURCE = Path(sys.argv[1])
 DEST = ROOT / 'jsons' / 'posts.json'
-DEST_JS = ROOT / 'dist' / 'posts.js'
+DEST_JS = ROOT / 'docs' / 'posts.js'
 
 
 class PostText(HTMLParser):
